@@ -15,7 +15,8 @@ class NewsViewModel: ViewModel() {
 
     var getNewsUseCase = GetNewsUseCase()
 
-    fun onCreate() {
+
+    init {
         viewModelScope.launch {
             val result = getNewsUseCase()
             _items.postValue(result)

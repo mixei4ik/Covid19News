@@ -26,7 +26,8 @@ class NewsAdapter: RecyclerView.Adapter<NewsViewHolder>() {
     override fun onBindViewHolder(holder: NewsViewHolder, position: Int) {
         val title = items[position].title ?: ""
         val urlToImage = items[position].urlToImage ?: ""
-        holder.bind(title, urlToImage)
+        val time = items[position].publishedAt ?: ""
+        holder.bind(title, urlToImage, time)
     }
 
     fun addItems(newsItems: List<NewsModel>) {
@@ -36,11 +37,17 @@ class NewsAdapter: RecyclerView.Adapter<NewsViewHolder>() {
 }
 
 class NewsViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-    private val textView = view.findViewById<TextView>(R.id.textView)
-    private val imageView = view.findViewById<ImageView>(R.id.imageView)
+    private val textView = view.findViewById<TextView>(R.id.title_text_view)
+    private val imageView = view.findViewById<ImageView>(R.id.image_view)
+    private val timeView = view.findViewById<TextView>(R.id.time_text_view)
 
-    fun bind(title: String, urlToImage: String) {
+    fun bind(title: String, urlToImage: String, time: String) {
         textView.text = title
-        imageView.load(urlToImage)
+        timeView.text = time
+        imageView.load(urlToImage){
+            placeholder(R.drawable.ic_image)
+            error(R.drawable.ic_image)
+            crossfade(true)
+        }
     }
 }
