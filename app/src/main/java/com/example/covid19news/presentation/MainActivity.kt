@@ -3,11 +3,12 @@ package com.example.covid19news.presentation
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.activity.viewModels
-import androidx.lifecycle.Observer
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.covid19news.databinding.ActivityMainBinding
 import com.example.covid19news.presentation.adapter.NewsAdapter
 import com.example.covid19news.presentation.viewmodel.NewsViewModel
+import kotlinx.coroutines.flow.collectLatest
 
 
 class MainActivity : AppCompatActivity() {
@@ -28,9 +29,10 @@ class MainActivity : AppCompatActivity() {
             layoutManager = LinearLayoutManager(this@MainActivity)
         }
 
-        newsViewModel.items.observe(this, Observer {
-            it ?: return@Observer
-            itemAdapter.addItems(it)
-        })
+        lifecycleScope.launchWhenStarted {
+            newsViewModel.items.collectLatest {
+                if (it != null) itemAdapter.addItems(it)
+            }
+        }
     }
 }
