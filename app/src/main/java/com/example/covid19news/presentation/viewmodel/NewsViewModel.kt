@@ -8,11 +8,12 @@ import com.example.covid19news.domain.NewsModel
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.asStateFlow
 
 class NewsViewModel: ViewModel() {
 
     private val _items = MutableStateFlow<List<NewsModel>?>(null)
-    val items: StateFlow<List<NewsModel>?> get() = _items
+    val items: StateFlow<List<NewsModel>?> = _items.asStateFlow()
 
     private val newsRepository by lazy { NewsRepositoryImpl() }
 

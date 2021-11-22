@@ -3,6 +3,7 @@ package com.example.covid19news.presentation
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.activity.viewModels
+import androidx.core.view.isVisible
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.covid19news.databinding.ActivityMainBinding
@@ -31,7 +32,11 @@ class MainActivity : AppCompatActivity() {
 
         lifecycleScope.launchWhenStarted {
             newsViewModel.items.collectLatest {
-                if (it != null) itemAdapter.addItems(it)
+                if (it != null) {
+                    itemAdapter.addItems(it)
+                    binding.progress.isVisible = false
+                }
+                else binding.progress.isVisible = true
             }
         }
     }
