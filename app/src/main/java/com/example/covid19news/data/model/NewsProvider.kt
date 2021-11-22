@@ -1,9 +1,11 @@
 package com.example.covid19news.data.model
 
 import com.example.covid19news.domain.NewsModel
+import javax.inject.Inject
+import javax.inject.Singleton
 
-class NewsProvider {
-    companion object {
+@Singleton
+class NewsProvider @Inject constructor() {
+
         var news: List<NewsModel> = emptyList()
-    }
 }
