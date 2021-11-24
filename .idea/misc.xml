@@ -3,9 +3,16 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/AndroidStudioProjects/Covid19News/app/src/main/res/drawable/ic_baseline_coronavirus_24.xml" value="0.32407407407407407" />
         <entry key="..\:/AndroidStudioProjects/Covid19News/app/src/main/res/drawable/ic_image.xml" value="0.37552083333333336" />
-        <entry key="..\:/AndroidStudioProjects/Covid19News/app/src/main/res/layout/activity_main.xml" value="0.359375" />
+        <entry key="..\:/AndroidStudioProjects/Covid19News/app/src/main/res/drawable/ic_saved_news.xml" value="0.32407407407407407" />
+        <entry key="..\:/AndroidStudioProjects/Covid19News/app/src/main/res/layout/activity_main.xml" value="0.28174235403151066" />
+        <entry key="..\:/AndroidStudioProjects/Covid19News/app/src/main/res/layout/fargment_breaking_news.xml" value="0.359375" />
+        <entry key="..\:/AndroidStudioProjects/Covid19News/app/src/main/res/layout/fragment_breaking_news.xml" value="0.359375" />
+        <entry key="..\:/AndroidStudioProjects/Covid19News/app/src/main/res/layout/fragment_news_item.xml" value="0.359375" />
+        <entry key="..\:/AndroidStudioProjects/Covid19News/app/src/main/res/layout/fragment_saved_news.xml" value="0.359375" />
         <entry key="..\:/AndroidStudioProjects/Covid19News/app/src/main/res/layout/layout_item.xml" value="0.359375" />
+        <entry key="..\:/AndroidStudioProjects/Covid19News/app/src/main/res/menu/bottom_navigation_menu.xml" value="0.359375" />
       </map>
     </option>
   </component>

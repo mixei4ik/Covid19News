@@ -5,5 +5,5 @@ import retrofit2.http.GET
 
 interface NewsApiClient {
     @GET("/news/trending?limit=20&offset")
-    suspend fun getListOfFilms(): NewsApiData
+    suspend fun getListOfNews(): NewsApiData
 }

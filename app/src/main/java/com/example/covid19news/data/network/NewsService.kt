@@ -2,7 +2,6 @@ package com.example.covid19news.data.network
 
 
 import com.example.covid19news.data.model.NewsApiData
-import com.example.covid19news.domain.NewsModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import javax.inject.Inject
@@ -13,7 +12,7 @@ class NewsService @Inject constructor(
 
     suspend fun getNews(): NewsApiData {
         return withContext(Dispatchers.IO) {
-            api.getListOfFilms()
+            api.getListOfNews()
         }
     }
 }

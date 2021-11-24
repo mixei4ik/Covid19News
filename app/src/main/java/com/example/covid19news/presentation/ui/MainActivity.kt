@@ -1,11 +1,14 @@
-package com.example.covid19news.presentation
+package com.example.covid19news.presentation.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.core.view.isVisible
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.ui.setupWithNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.covid19news.R
 import com.example.covid19news.databinding.ActivityMainBinding
 import com.example.covid19news.presentation.adapter.NewsAdapter
 import com.example.covid19news.presentation.viewmodel.NewsViewModel
@@ -17,16 +20,21 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
 
-    private val itemAdapter = NewsAdapter()
+//    private val itemAdapter = NewsAdapter()
 
-    private val newsViewModel by viewModels<NewsViewModel>()
+    val newsViewModel by viewModels<NewsViewModel>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        binding.recyclerView.apply {
+        val navHostFragment =
+            supportFragmentManager.findFragmentById(R.id.navHostFragment) as NavHostFragment
+        val navController = navHostFragment.navController
+        binding.bottomNavigationView.setupWithNavController(navController)
+
+/*        binding.recyclerView.apply {
             adapter = itemAdapter
             layoutManager = LinearLayoutManager(this@MainActivity)
         }
@@ -39,6 +47,6 @@ class MainActivity : AppCompatActivity() {
                 }
                 else binding.progress.isVisible = true
             }
-        }
+        }*/
     }
 }
