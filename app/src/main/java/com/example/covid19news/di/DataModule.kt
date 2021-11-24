@@ -14,6 +14,7 @@ import javax.inject.Singleton
 @InstallIn(SingletonComponent::class)
 object DataModule {
 
+    @Singleton
     @Provides
     fun provideNewsRepository(api: NewsService, newsProvider: NewsProvider): NewsRepository {
         return NewsRepositoryImpl(api, newsProvider)
