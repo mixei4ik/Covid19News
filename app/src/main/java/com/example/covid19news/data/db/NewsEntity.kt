@@ -1,9 +1,12 @@
-package com.example.covid19news.domain
+package com.example.covid19news.data.db
 
-import java.io.Serializable
+import androidx.room.Entity
+import androidx.room.PrimaryKey
 
-data class NewsModel(
-    val nid: Int,
+
+@Entity(tableName = "entity_news")
+data class NewsEntity(
+    @PrimaryKey val nid: Int,
     val title: String,
     val description: String,
     val content: String,
@@ -16,4 +19,4 @@ data class NewsModel(
     val language: String,
     val countryCode: String,
     val status: Int
-) : Serializable
+)

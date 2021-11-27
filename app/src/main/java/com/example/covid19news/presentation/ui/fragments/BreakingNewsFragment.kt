@@ -9,6 +9,7 @@ import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.covid19news.R
 import com.example.covid19news.databinding.FragmentBreakingNewsBinding
@@ -36,10 +37,20 @@ class BreakingNewsFragment : Fragment(R.layout.fragment_breaking_news) {
             layoutManager = LinearLayoutManager(activity)
         }
 
+        itemAdapter.setOnItemClickListener {
+            val bundle = Bundle().apply {
+                putSerializable("news", it)
+            }
+            findNavController().navigate(
+                R.id.action_breakingNewsFragment_to_newsItemFragment,
+                bundle
+            )
+        }
+
         lifecycleScope.launchWhenStarted {
             newsViewModel.items.collectLatest {
                 if (it != null) {
-                    itemAdapter.addItems(it)
+                    itemAdapter.diff.submitList(it)
                     binding.progress.isVisible = false
                 }
                 else binding.progress.isVisible = true

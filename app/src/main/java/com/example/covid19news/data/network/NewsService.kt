@@ -10,9 +10,9 @@ class NewsService @Inject constructor(
     private val api: NewsApiClient
 ) {
 
-    suspend fun getNews(): NewsApiData {
+    suspend fun getNews(country: String): NewsApiData {
         return withContext(Dispatchers.IO) {
-            api.getListOfNews()
+            api.getListOfNews(country = country)
         }
     }
 }

@@ -1,17 +1,20 @@
 package com.example.covid19news.data.repository
 
+
+import com.example.covid19news.data.db.NewsEntityDatabase
 import com.example.covid19news.data.model.NewsProvider
 import com.example.covid19news.data.network.NewsService
 import com.example.covid19news.domain.NewsModel
 import com.example.covid19news.domain.repository.NewsRepository
 
 class NewsRepositoryImpl(
+    private val db: NewsEntityDatabase,
     private val api: NewsService,
     private val newsProvider: NewsProvider
 ) : NewsRepository {
 
-    override suspend fun getAllNews(): List<NewsModel> {
-        val response = api.getNews()
+    override suspend fun getAllNews(country: String): List<NewsModel> {
+        val response = api.getNews(country)
             .items
             .map { news ->
                 NewsModel(

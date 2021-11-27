@@ -20,8 +20,6 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
 
-//    private val itemAdapter = NewsAdapter()
-
     val newsViewModel by viewModels<NewsViewModel>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -33,20 +31,5 @@ class MainActivity : AppCompatActivity() {
             supportFragmentManager.findFragmentById(R.id.navHostFragment) as NavHostFragment
         val navController = navHostFragment.navController
         binding.bottomNavigationView.setupWithNavController(navController)
-
-/*        binding.recyclerView.apply {
-            adapter = itemAdapter
-            layoutManager = LinearLayoutManager(this@MainActivity)
-        }
-
-        lifecycleScope.launchWhenStarted {
-            newsViewModel.items.collectLatest {
-                if (it != null) {
-                    itemAdapter.addItems(it)
-                    binding.progress.isVisible = false
-                }
-                else binding.progress.isVisible = true
-            }
-        }*/
     }
 }

@@ -33,5 +33,10 @@
     <fragment
         android:id="@+id/newsItemFragment"
         android:name="com.example.covid19news.presentation.ui.fragments.NewsItemFragment"
-        android:label="NewsItemFragment" />
+        android:label="NewsItemFragment" >
+
+        <argument
+            android:name="news"
+            app:argType="com.example.covid19news.domain.NewsModel" />
+    </fragment>
 </navigation>

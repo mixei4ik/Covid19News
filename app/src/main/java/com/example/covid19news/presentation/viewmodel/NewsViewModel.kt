@@ -21,9 +21,11 @@ class NewsViewModel @Inject constructor(
     val items: StateFlow<List<NewsModel>?> = _items.asStateFlow()
 
     init {
-        viewModelScope.launch {
-            val result = getNewsUseCase()
+        getBreakingNews(country = "")
+    }
+
+    private fun getBreakingNews(country: String) = viewModelScope.launch {
+            val result = getNewsUseCase.invoke(country)
             _items.value = result
         }
-    }
 }
