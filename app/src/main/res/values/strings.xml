@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Covid19News</string>
+    <string name="setting">setting</string>
 </resources>

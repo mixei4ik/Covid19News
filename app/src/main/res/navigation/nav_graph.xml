@@ -7,7 +7,7 @@
     <fragment
         android:id="@+id/breakingNewsFragment"
         android:name="com.example.covid19news.presentation.ui.fragments.BreakingNewsFragment"
-        android:label="BreakingNewsFragment" >
+        android:label="Breaking News" >
         <action
             android:id="@+id/action_breakingNewsFragment_to_newsItemFragment"
             app:destination="@id/newsItemFragment"
@@ -20,7 +20,7 @@
     <fragment
         android:id="@+id/savedNewsFragment"
         android:name="com.example.covid19news.presentation.ui.fragments.SavedNewsFragment"
-        android:label="SavedNewsFragment" >
+        android:label="Saved News" >
         <action
             android:id="@+id/action_savedNewsFragment_to_newsItemFragment"
             app:destination="@id/newsItemFragment"
@@ -33,7 +33,7 @@
     <fragment
         android:id="@+id/newsItemFragment"
         android:name="com.example.covid19news.presentation.ui.fragments.NewsItemFragment"
-        android:label="NewsItemFragment" >
+        android:label="News details" >
 
         <argument
             android:name="news"
