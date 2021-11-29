@@ -1,13 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
     app:startDestination="@id/breakingNewsFragment">
 
     <fragment
         android:id="@+id/breakingNewsFragment"
         android:name="com.example.covid19news.presentation.ui.fragments.BreakingNewsFragment"
-        android:label="Breaking News" >
+        android:label="Breaking News"
+        tools:layout="@layout/fragment_breaking_news">
         <action
             android:id="@+id/action_breakingNewsFragment_to_newsItemFragment"
             app:destination="@id/newsItemFragment"
@@ -20,7 +22,8 @@
     <fragment
         android:id="@+id/savedNewsFragment"
         android:name="com.example.covid19news.presentation.ui.fragments.SavedNewsFragment"
-        android:label="Saved News" >
+        android:label="Saved News"
+        tools:layout="@layout/fragment_saved_news">
         <action
             android:id="@+id/action_savedNewsFragment_to_newsItemFragment"
             app:destination="@id/newsItemFragment"
@@ -33,7 +36,8 @@
     <fragment
         android:id="@+id/newsItemFragment"
         android:name="com.example.covid19news.presentation.ui.fragments.NewsItemFragment"
-        android:label="News details" >
+        android:label="News details"
+        tools:layout="@layout/fragment_news_item">
 
         <argument
             android:name="news"
