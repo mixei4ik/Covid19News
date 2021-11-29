@@ -10,7 +10,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import com.example.covid19news.R
-import com.example.covid19news.domain.models.NewsModel
+import com.example.covid19news.domain.NewsModel
 
 class NewsAdapter: RecyclerView.Adapter<NewsViewHolder>() {
 

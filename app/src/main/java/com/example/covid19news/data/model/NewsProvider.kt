@@ -1,6 +1,6 @@
 package com.example.covid19news.data.model
 
-import com.example.covid19news.domain.models.NewsModel
+import com.example.covid19news.domain.NewsModel
 import javax.inject.Inject
 import javax.inject.Singleton
 

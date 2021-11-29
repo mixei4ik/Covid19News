@@ -5,7 +5,7 @@ import com.example.covid19news.data.db.NewsEntity
 import com.example.covid19news.data.db.NewsEntityDatabase
 import com.example.covid19news.data.model.NewsProvider
 import com.example.covid19news.data.network.NewsService
-import com.example.covid19news.domain.models.NewsModel
+import com.example.covid19news.domain.NewsModel
 import com.example.covid19news.domain.repository.NewsRepository
 import kotlinx.coroutines.flow.map
 

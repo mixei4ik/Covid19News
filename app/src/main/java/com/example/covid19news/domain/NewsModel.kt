@@ -1,4 +1,4 @@
-package com.example.covid19news.domain.models
+package com.example.covid19news.domain
 
 import java.io.Serializable
 
