@@ -1,7 +1,6 @@
 package com.example.covid19news.domain.repository
 
-import com.example.covid19news.data.db.NewsEntity
-import com.example.covid19news.domain.NewsModel
+import com.example.covid19news.domain.models.NewsModel
 import kotlinx.coroutines.flow.Flow
 
 interface NewsRepository {
