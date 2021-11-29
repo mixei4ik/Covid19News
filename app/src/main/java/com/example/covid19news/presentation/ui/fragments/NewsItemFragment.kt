@@ -2,6 +2,7 @@ package com.example.covid19news.presentation.ui.fragments
 
 import android.os.Bundle
 import android.view.View
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.navArgs
 import coil.load
@@ -24,16 +25,22 @@ class NewsItemFragment: Fragment(R.layout.fragment_news_item) {
         binding = FragmentNewsItemBinding.bind(view)
         newsViewModel = (activity as MainActivity).newsViewModel
 
-        binding.contentItemView.text = args.news.content
-        binding.descriptionItemView.text = args.news.description
-        binding.siteNameItemView.text = args.news.siteName
-        binding.timeItemView.text = args.news.publishedAt
-        binding.titleItemView.text = args.news.title
-        binding.urlNameItemView.text = args.news.url
-        binding.imageItemView.load(args.news.urlToImage){
+        val news = args.news
+
+        binding.contentItemView.text = news.content
+        binding.descriptionItemView.text = news.description
+        binding.siteNameItemView.text = news.siteName
+        binding.timeItemView.text = news.publishedAt
+        binding.titleItemView.text = news.title
+        binding.urlNameItemView.text = news.url
+        binding.imageItemView.load(news.urlToImage){
             placeholder(R.drawable.ic_image)
             error(R.drawable.ic_image)
             crossfade(true)
+        }
+        binding.saveNewsButton.setOnClickListener{
+            newsViewModel.saveNews(news = news)
+            Toast.makeText(context, "News saved", Toast.LENGTH_SHORT).show()
         }
     }
 }

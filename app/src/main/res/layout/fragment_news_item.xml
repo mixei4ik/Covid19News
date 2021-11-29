@@ -67,9 +67,17 @@
             android:id="@+id/url_name_item_view"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="12sp"
+            android:textSize="14sp"
             android:layout_marginTop="8dp"
             tools:text="Url" />
+
+        <Button
+            android:id="@+id/save_news_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="save news"
+            android:layout_marginTop="8dp"/>
 
     </androidx.appcompat.widget.LinearLayoutCompat>
 
