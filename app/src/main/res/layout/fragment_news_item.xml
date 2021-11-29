@@ -76,7 +76,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:text="save news"
+            android:text="@string/save_news"
             android:layout_marginTop="8dp"/>
 
     </androidx.appcompat.widget.LinearLayoutCompat>
