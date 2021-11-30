@@ -10,20 +10,21 @@ import com.example.covid19news.R
 import com.example.covid19news.databinding.FragmentNewsItemBinding
 import com.example.covid19news.databinding.FragmentSavedNewsBinding
 import com.example.covid19news.presentation.ui.MainActivity
+import com.example.covid19news.presentation.viewmodel.NewsDetailViewModel
 import com.example.covid19news.presentation.viewmodel.NewsViewModel
 
 class NewsItemFragment: Fragment(R.layout.fragment_news_item) {
 
     private lateinit var binding: FragmentNewsItemBinding
 
-    lateinit var newsViewModel: NewsViewModel
+    lateinit var newsDetailViewModel: NewsDetailViewModel
 
     private val args: NewsItemFragmentArgs by navArgs()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentNewsItemBinding.bind(view)
-        newsViewModel = (activity as MainActivity).newsViewModel
+        newsDetailViewModel = (activity as MainActivity).newsDetailViewModel
 
         val news = args.news
 
@@ -39,7 +40,7 @@ class NewsItemFragment: Fragment(R.layout.fragment_news_item) {
             crossfade(true)
         }
         binding.saveNewsButton.setOnClickListener{
-            newsViewModel.saveNews(news = news)
+            newsDetailViewModel.saveNews(news = news)
             Toast.makeText(context, "News saved", Toast.LENGTH_SHORT).show()
         }
     }

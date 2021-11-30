@@ -2,27 +2,24 @@ package com.example.covid19news.presentation.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.covid19news.common.Resource
 import com.example.covid19news.domain.*
 import com.example.covid19news.domain.models.UserSettings
+import com.example.covid19news.presentation.NewsListState
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
 class NewsViewModel @Inject constructor(
     private val getNewsUseCase: GetNewsUseCase,
-    private val saveNewsUseCase: SaveNewsUseCase,
-    private val deleteSavedNewsUseCase: DeleteSavedNewsUseCase,
-    private val getSavedNewsUseCase: GetSavedNewsUseCase,
     private val getSettingsUseCase: GetSettingsUseCase,
     private val saveSettingUseCase: SaveSettingUseCase
 ) : ViewModel() {
 
-    private val _items = MutableStateFlow<List<NewsModel>?>(null)
-    val items: StateFlow<List<NewsModel>?> = _items.asStateFlow()
+    private val _itemsState = MutableStateFlow<NewsListState>(NewsListState())
+    val itemsState: StateFlow<NewsListState> = _itemsState.asStateFlow()
 
     private val _darkThemeIncluded = MutableStateFlow<Boolean>(false)
     val darkThemeIncluded: StateFlow<Boolean> = _darkThemeIncluded.asStateFlow()
@@ -37,19 +34,20 @@ class NewsViewModel @Inject constructor(
         getBreakingNews(country = countryInit)
     }
 
-    fun getBreakingNews(country: String) = viewModelScope.launch {
-        val result = getNewsUseCase.invoke(country)
-        _items.value = result
-    }
-
-    fun getSavedNews() = getSavedNewsUseCase.getSavedNews()
-
-    fun saveNews(news: NewsModel) = viewModelScope.launch {
-        saveNewsUseCase.saveNews(news)
-    }
-
-    fun deleteSavedNews(news: NewsModel) = viewModelScope.launch {
-        deleteSavedNewsUseCase.deleteSavedNews(news)
+    fun getBreakingNews(country: String) {
+        getNewsUseCase(country).onEach { result ->
+            when(result) {
+                is Resource.Success -> {
+                    _itemsState.value = NewsListState(news = result.data ?: emptyList())
+                }
+                is Resource.Error -> {
+                    _itemsState.value = NewsListState(error = result.message ?: "An unexpected error occured")
+                }
+                is Resource.Loading -> {
+                    _itemsState.value = NewsListState(isLoading = true)
+                }
+            }
+        }.launchIn(viewModelScope)
     }
 
     fun saveSetting(darkThemeIncluded: Boolean, localization: String) {

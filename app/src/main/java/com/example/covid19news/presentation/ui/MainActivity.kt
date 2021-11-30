@@ -1,25 +1,23 @@
 package com.example.covid19news.presentation.ui
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import androidx.activity.viewModels
+import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.appcompat.app.AppCompatDelegate.MODE_NIGHT_NO
 import androidx.appcompat.app.AppCompatDelegate.MODE_NIGHT_YES
-import androidx.core.view.isVisible
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.NavController
-import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.NavigationUI
 import androidx.navigation.ui.setupWithNavController
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.covid19news.R
 import com.example.covid19news.databinding.ActivityMainBinding
-import com.example.covid19news.presentation.adapter.NewsAdapter
+import com.example.covid19news.presentation.viewmodel.NewsDetailViewModel
 import com.example.covid19news.presentation.viewmodel.NewsViewModel
+import com.example.covid19news.presentation.viewmodel.SavedNewsViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 
@@ -31,6 +29,8 @@ class MainActivity : AppCompatActivity() {
     private lateinit var navController: NavController
 
     val newsViewModel by viewModels<NewsViewModel>()
+    val newsDetailViewModel by viewModels<NewsDetailViewModel>()
+    val savedNewsViewModel by viewModels<SavedNewsViewModel>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

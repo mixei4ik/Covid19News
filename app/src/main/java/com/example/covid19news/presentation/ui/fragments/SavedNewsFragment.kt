@@ -13,7 +13,7 @@ import com.example.covid19news.R
 import com.example.covid19news.databinding.FragmentSavedNewsBinding
 import com.example.covid19news.presentation.adapter.NewsAdapter
 import com.example.covid19news.presentation.ui.MainActivity
-import com.example.covid19news.presentation.viewmodel.NewsViewModel
+import com.example.covid19news.presentation.viewmodel.SavedNewsViewModel
 import kotlinx.coroutines.flow.collectLatest
 
 class SavedNewsFragment : Fragment(R.layout.fragment_saved_news) {
@@ -22,12 +22,12 @@ class SavedNewsFragment : Fragment(R.layout.fragment_saved_news) {
 
     private lateinit var itemAdapter: NewsAdapter
 
-    lateinit var newsViewModel: NewsViewModel
+    lateinit var savedNewsViewModel: SavedNewsViewModel
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentSavedNewsBinding.bind(view)
-        newsViewModel = (activity as MainActivity).newsViewModel
+        savedNewsViewModel = (activity as MainActivity).savedNewsViewModel
 
         setupRecycleView()
 
@@ -56,7 +56,7 @@ class SavedNewsFragment : Fragment(R.layout.fragment_saved_news) {
             override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
                 val position = viewHolder.absoluteAdapterPosition
                 val news = itemAdapter.diff.currentList[position]
-                newsViewModel.deleteSavedNews(news)
+                savedNewsViewModel.deleteSavedNews(news)
                 Toast.makeText(context, "Deleted news", Toast.LENGTH_SHORT).show()
             }
 
@@ -66,10 +66,8 @@ class SavedNewsFragment : Fragment(R.layout.fragment_saved_news) {
             attachToRecyclerView(binding.recyclerViewSavedNews)
         }
 
-
-
         lifecycleScope.launchWhenStarted {
-            newsViewModel.getSavedNews().collectLatest {
+            savedNewsViewModel.getSavedNews().collectLatest {
                 itemAdapter.diff.submitList(it)
             }
         }
