@@ -5,7 +5,9 @@ import androidx.lifecycle.viewModelScope
 import com.example.covid19news.domain.*
 import com.example.covid19news.domain.models.UserSettings
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.flow.*
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -17,14 +19,13 @@ class NewsViewModel @Inject constructor(
     private val getSavedNewsUseCase: GetSavedNewsUseCase,
     private val getSettingsUseCase: GetSettingsUseCase,
     private val saveSettingUseCase: SaveSettingUseCase
-): ViewModel() {
+) : ViewModel() {
 
     private val _items = MutableStateFlow<List<NewsModel>?>(null)
     val items: StateFlow<List<NewsModel>?> = _items.asStateFlow()
 
-    val savedItems: StateFlow<List<NewsModel>> = getSavedNewsUseCase.getSavedNews().stateIn(viewModelScope, SharingStarted.Eagerly, listOf())
-
-    var darkThemeIncluded: Boolean = false
+    private val _darkThemeIncluded = MutableStateFlow<Boolean>(false)
+    val darkThemeIncluded: StateFlow<Boolean> = _darkThemeIncluded.asStateFlow()
 
     private val _country = MutableStateFlow<String>("")
     val country: StateFlow<String> = _country.asStateFlow()
@@ -33,13 +34,15 @@ class NewsViewModel @Inject constructor(
 
     init {
         loadSettings()
-        getBreakingNews(countryInit)
+        getBreakingNews(country = countryInit)
     }
 
     fun getBreakingNews(country: String) = viewModelScope.launch {
-            val result = getNewsUseCase.invoke(country)
-            _items.value = result
-        }
+        val result = getNewsUseCase.invoke(country)
+        _items.value = result
+    }
+
+    fun getSavedNews() = getSavedNewsUseCase.getSavedNews()
 
     fun saveNews(news: NewsModel) = viewModelScope.launch {
         saveNewsUseCase.saveNews(news)
@@ -58,6 +61,6 @@ class NewsViewModel @Inject constructor(
         val settings = getSettingsUseCase.execute()
         _country.value = settings.localization
         countryInit = settings.localization
-        darkThemeIncluded = settings.darkThemeIncluded
+        _darkThemeIncluded.value = settings.darkThemeIncluded
     }
 }

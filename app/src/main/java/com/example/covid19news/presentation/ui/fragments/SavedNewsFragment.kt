@@ -3,7 +3,6 @@ package com.example.covid19news.presentation.ui.fragments
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
-import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
@@ -21,7 +20,7 @@ class SavedNewsFragment : Fragment(R.layout.fragment_saved_news) {
 
     private lateinit var binding: FragmentSavedNewsBinding
 
-    private val itemAdapter = NewsAdapter()
+    private lateinit var itemAdapter: NewsAdapter
 
     lateinit var newsViewModel: NewsViewModel
 
@@ -30,10 +29,7 @@ class SavedNewsFragment : Fragment(R.layout.fragment_saved_news) {
         binding = FragmentSavedNewsBinding.bind(view)
         newsViewModel = (activity as MainActivity).newsViewModel
 
-        binding.recyclerViewSavedNews.apply {
-            adapter = itemAdapter
-            layoutManager = LinearLayoutManager(activity)
-        }
+        setupRecycleView()
 
         itemAdapter.setOnItemClickListener {
             val bundle = Bundle().apply {
@@ -70,10 +66,20 @@ class SavedNewsFragment : Fragment(R.layout.fragment_saved_news) {
             attachToRecyclerView(binding.recyclerViewSavedNews)
         }
 
+
+
         lifecycleScope.launchWhenStarted {
-            newsViewModel.savedItems.collectLatest {
+            newsViewModel.getSavedNews().collectLatest {
                 itemAdapter.diff.submitList(it)
             }
+        }
+    }
+
+    private fun setupRecycleView() {
+        itemAdapter = NewsAdapter()
+        binding.recyclerViewSavedNews.apply {
+            adapter = itemAdapter
+            layoutManager = LinearLayoutManager(activity)
         }
     }
 }

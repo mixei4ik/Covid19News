@@ -31,48 +31,20 @@ class SettingFragment: Fragment(R.layout.fragment_setting) {
 
         newsViewModel = (activity as MainActivity).newsViewModel
 
-/*        if (newsViewModel.darkThemeIncluded) {
-            AppCompatDelegate.setDefaultNightMode(MODE_NIGHT_YES)
-        } else {
-            AppCompatDelegate.setDefaultNightMode(MODE_NIGHT_NO)
-        }*/
-
-/*        lifecycleScope.launchWhenStarted {
+        lifecycleScope.launchWhenStarted {
             newsViewModel.darkThemeIncluded.collectLatest {
                 binding.switchCompat.isChecked = it
-                if (it) {
-                    AppCompatDelegate.setDefaultNightMode(MODE_NIGHT_YES)
-                } else {
-                    AppCompatDelegate.setDefaultNightMode(MODE_NIGHT_NO)
-                }
-            }
-        }*/
-
-/*        lifecycleScope.launchWhenStarted {
-            newsViewModel.darkThemeIncluded.collectLatest {
-                if (it) {
-                    AppCompatDelegate.setDefaultNightMode(MODE_NIGHT_YES)
-                } else {
-                    AppCompatDelegate.setDefaultNightMode(MODE_NIGHT_NO)
-                }
-            }
-        }*/
-
-//        binding.spinnerCountry.isSelected(R.array.country.  indexOf(userSettings.localization))
-
-        binding.switchCompat.setOnCheckedChangeListener { button, isChecked ->
-            if (isChecked) {
-                AppCompatDelegate.setDefaultNightMode(MODE_NIGHT_YES)
-            }
-            else {
-                AppCompatDelegate.setDefaultNightMode(MODE_NIGHT_NO)
             }
         }
 
+//        binding.spinnerCountry.isSelected(R.array.country.  indexOf(userSettings.localization))
+
         binding.saveSettingsButton.setOnClickListener {
-            val selectedDarkTheme = binding.switchCompat.isSelected
+            val selectedDarkTheme = binding.switchCompat.isChecked
             val selectedLocalization = binding.spinnerCountry.selectedItem.toString()
-            newsViewModel.saveSetting(selectedDarkTheme, selectedLocalization)
+            var localization = ""
+            if (selectedLocalization != "ALL WORLD") localization = selectedLocalization
+            newsViewModel.saveSetting(selectedDarkTheme, localization)
             newsViewModel.loadSettings()
             Toast.makeText(context, "Saved settings", Toast.LENGTH_SHORT).show()
         }

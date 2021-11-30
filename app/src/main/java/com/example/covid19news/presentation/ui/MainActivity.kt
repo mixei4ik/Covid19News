@@ -44,6 +44,16 @@ class MainActivity : AppCompatActivity() {
 
 
         NavigationUI.setupActionBarWithNavController(this, navController)
+
+        lifecycleScope.launchWhenStarted {
+            newsViewModel.darkThemeIncluded.collectLatest {
+                if (it) {
+                    AppCompatDelegate.setDefaultNightMode(MODE_NIGHT_YES)
+                } else {
+                    AppCompatDelegate.setDefaultNightMode(MODE_NIGHT_NO)
+                }
+            }
+        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {

@@ -22,7 +22,7 @@ class BreakingNewsFragment : Fragment(R.layout.fragment_breaking_news) {
 
     private lateinit var binding: FragmentBreakingNewsBinding
 
-    private val itemAdapter = NewsAdapter()
+    private lateinit var itemAdapter: NewsAdapter
 
     lateinit var newsViewModel: NewsViewModel
 
@@ -32,16 +32,7 @@ class BreakingNewsFragment : Fragment(R.layout.fragment_breaking_news) {
 
         newsViewModel = (activity as MainActivity).newsViewModel
 
-        lifecycleScope.launchWhenStarted {
-            newsViewModel.country.collectLatest {
-                newsViewModel.getBreakingNews(it)
-            }
-        }
-
-        binding.recyclerViewBreakingNews.apply {
-            adapter = itemAdapter
-            layoutManager = LinearLayoutManager(activity)
-        }
+        setupRecycleView()
 
         itemAdapter.setOnItemClickListener {
             val bundle = Bundle().apply {
@@ -54,6 +45,12 @@ class BreakingNewsFragment : Fragment(R.layout.fragment_breaking_news) {
         }
 
         lifecycleScope.launchWhenStarted {
+            newsViewModel.country.collectLatest {
+                newsViewModel.getBreakingNews(it)
+            }
+        }
+
+        lifecycleScope.launchWhenStarted {
             newsViewModel.items.collectLatest {
                 if (it != null) {
                     itemAdapter.diff.submitList(it)
@@ -61,6 +58,14 @@ class BreakingNewsFragment : Fragment(R.layout.fragment_breaking_news) {
                 }
                 else binding.progress.isVisible = true
             }
+        }
+    }
+
+    private fun setupRecycleView() {
+        itemAdapter = NewsAdapter()
+        binding.recyclerViewBreakingNews.apply {
+            adapter = itemAdapter
+            layoutManager = LinearLayoutManager(activity)
         }
     }
 }
