@@ -23,5 +23,4 @@ class GetNewsUseCase @Inject constructor(
             emit(Resource.Error("Couldn't reach server. Check your internet connection"))
         }
     }
-
 }

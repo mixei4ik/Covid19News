@@ -52,15 +52,10 @@ class NewsRepositoryImpl(
             saveNews.title,
             saveNews.description,
             saveNews.content,
-            saveNews.author,
             saveNews.url,
             saveNews.urlToImage,
             saveNews.publishedAt,
-            saveNews.addedOn,
-            saveNews.siteName,
-            saveNews.language,
-            saveNews.countryCode,
-            saveNews.status
+            saveNews.siteName
         )
     }
 
@@ -70,33 +65,23 @@ class NewsRepositoryImpl(
             newsEntity.title,
             newsEntity.description,
             newsEntity.content,
-            newsEntity.author,
             newsEntity.url,
             newsEntity.urlToImage,
             newsEntity.publishedAt,
-            newsEntity.addedOn,
-            newsEntity.siteName,
-            newsEntity.language,
-            newsEntity.countryCode,
-            newsEntity.status
+            newsEntity.siteName
         )
     }
 
     private fun mapFromApiDataToDomain(newsApiData: News): NewsModel {
         return NewsModel(
-            newsApiData.nid,
-            newsApiData.title,
-            newsApiData.description,
-            newsApiData.content,
-            newsApiData.author,
-            newsApiData.url,
-            newsApiData.urlToImage,
-            newsApiData.publishedAt,
-            newsApiData.addedOn,
-            newsApiData.siteName,
-            newsApiData.language,
-            newsApiData.countryCode,
-            newsApiData.status
+            newsApiData.nid ?: 1,
+            newsApiData.title ?: "no data",
+            newsApiData.description ?: "no data",
+            newsApiData.content ?: "no data",
+            newsApiData.url ?: "no data",
+            newsApiData.urlToImage ?: "no data",
+            newsApiData.publishedAt ?: "no data",
+            newsApiData.siteName ?: "no data"
         )
     }
 }
