@@ -1,6 +1,7 @@
 package com.example.covid19news.domain.repository
 
 import com.example.covid19news.domain.NewsModel
+import com.example.covid19news.domain.models.UserSettings
 import kotlinx.coroutines.flow.Flow
 
 interface NewsRepository {
@@ -12,4 +13,8 @@ interface NewsRepository {
     fun getSavedNews(): Flow<List<NewsModel>>
 
     suspend fun deleteEntityNews(news: NewsModel)
+
+    fun saveSettings(userSettings: UserSettings) : Boolean
+
+    fun getSettings(): UserSettings
 }

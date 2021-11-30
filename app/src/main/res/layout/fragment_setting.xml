@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.appcompat.widget.LinearLayoutCompat
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".presentation.ui.fragments.SettingFragment">
 
     <androidx.appcompat.widget.SwitchCompat
@@ -11,10 +13,27 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="16dp"
+        android:layout_marginTop="20dp"
         android:text="@string/change_theme_day_night"
         android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_gravity="center"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/localization"
+        android:layout_marginTop="20dp"
+        android:padding="16dp"
+        android:textSize="20sp"/>
+
+    <Spinner
+        android:id="@+id/spinner_country"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:padding="16dp"
+        android:entries="@array/country"
+        android:layout_gravity="center"/>
+
 
     <Button
         android:id="@+id/save_settings_button"
@@ -22,8 +41,6 @@
         android:layout_height="wrap_content"
         android:text="@string/save_settings"
         android:layout_marginTop="20dp"
-        app:layout_constraintEnd_toEndOf="@+id/switchCompat"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/switchCompat" />
+        android:layout_gravity="center"/>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.appcompat.widget.LinearLayoutCompat>

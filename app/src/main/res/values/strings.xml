@@ -1,7 +1,15 @@
 <resources>
     <string name="app_name">Covid19News</string>
     <string name="setting">setting</string>
-    <string name="change_theme_day_night">change theme day / night</string>
+    <string name="change_theme_day_night">Change theme day / night</string>
     <string name="save_news">save news</string>
     <string name="save_settings">save settings</string>
+    <string name="localization">Localization:</string>
+
+    <string-array name="country">
+        <item>ALL WORLD</item>
+        <item>ALBANIA</item>
+        <item>AUSTRALIA</item>
+        <item>BANGLADESH</item>
+    </string-array>
 </resources>

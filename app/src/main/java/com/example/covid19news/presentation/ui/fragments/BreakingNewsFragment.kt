@@ -32,6 +32,12 @@ class BreakingNewsFragment : Fragment(R.layout.fragment_breaking_news) {
 
         newsViewModel = (activity as MainActivity).newsViewModel
 
+        lifecycleScope.launchWhenStarted {
+            newsViewModel.country.collectLatest {
+                newsViewModel.getBreakingNews(it)
+            }
+        }
+
         binding.recyclerViewBreakingNews.apply {
             adapter = itemAdapter
             layoutManager = LinearLayoutManager(activity)

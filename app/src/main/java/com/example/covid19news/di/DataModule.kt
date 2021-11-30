@@ -7,6 +7,8 @@ import com.example.covid19news.data.db.NewsEntityDatabase
 import com.example.covid19news.data.model.NewsProvider
 import com.example.covid19news.data.network.NewsService
 import com.example.covid19news.data.repository.NewsRepositoryImpl
+import com.example.covid19news.data.srorage.SharedPerfUserStorage
+import com.example.covid19news.data.srorage.UserStorage
 import com.example.covid19news.domain.repository.NewsRepository
 import dagger.Module
 import dagger.Provides
@@ -21,8 +23,8 @@ object DataModule {
 
     @Singleton
     @Provides
-    fun provideNewsRepository(db: NewsEntityDatabase, api: NewsService, newsProvider: NewsProvider): NewsRepository {
-        return NewsRepositoryImpl(db, api, newsProvider)
+    fun provideNewsRepository(db: NewsEntityDatabase, api: NewsService, newsProvider: NewsProvider, userStorage: UserStorage): NewsRepository {
+        return NewsRepositoryImpl(db, api, newsProvider, userStorage)
     }
 
     @Singleton
@@ -39,5 +41,11 @@ object DataModule {
     @Provides
     fun provideEntityNewsDao(newsEntity: NewsEntityDatabase) : EntityNewsDao {
         return newsEntity.getNewsEntityDao()
+    }
+
+    @Singleton
+    @Provides
+    fun provideUserStorage(@ApplicationContext context: Context): UserStorage {
+        return SharedPerfUserStorage(context)
     }
 }
