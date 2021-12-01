@@ -2,6 +2,7 @@ package com.example.covid19news.di
 
 import com.example.covid19news.data.RetrofitHelper
 import com.example.covid19news.data.network.NewsApiClient
+import com.example.covid19news.data.network.NewsApiStatisticClient
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -23,5 +24,11 @@ object NetworkModule {
     @Provides
     fun provideNewsApiClient(retrofit: Retrofit): NewsApiClient{
         return retrofit.create(NewsApiClient::class.java)
+    }
+
+    @Singleton
+    @Provides
+    fun provideNewsApiStatisticClient(retrofit: Retrofit): NewsApiStatisticClient {
+        return retrofit.create(NewsApiStatisticClient::class.java)
     }
 }

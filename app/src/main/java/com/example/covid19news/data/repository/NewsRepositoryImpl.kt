@@ -9,6 +9,7 @@ import com.example.covid19news.data.network.NewsService
 import com.example.covid19news.data.model.Settings
 import com.example.covid19news.data.srorage.UserStorage
 import com.example.covid19news.domain.NewsModel
+import com.example.covid19news.domain.models.Statistic
 import com.example.covid19news.domain.models.UserSettings
 import com.example.covid19news.domain.repository.NewsRepository
 import kotlinx.coroutines.flow.map
@@ -26,6 +27,20 @@ class NewsRepositoryImpl(
             .map { mapFromApiDataToDomain(it) }
         newsProvider.news = response
         return response
+    }
+
+    override suspend fun getStatistic(): Statistic {
+        val statisticApi = api.getStatistic()
+        return Statistic(
+            statisticApi.totalConfirmed ?: 0,
+            statisticApi.totalDeaths ?: 0,
+            statisticApi.totalRecovered ?: 0,
+            statisticApi.totalNewCases ?: 0,
+            statisticApi.totalNewDeaths ?: 0,
+            statisticApi.totalActiveCases ?: 0,
+            statisticApi.totalCasesPerMillionPop ?: 0,
+            statisticApi.created ?: "no data",
+        )
     }
 
     override suspend fun upsert(news: NewsModel) = db.getNewsEntityDao().upsert(mapFromDomainToStorage(news))

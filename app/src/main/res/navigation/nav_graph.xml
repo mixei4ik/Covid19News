@@ -43,9 +43,16 @@
             android:name="news"
             app:argType="com.example.covid19news.domain.NewsModel" />
     </fragment>
+
     <fragment
         android:id="@+id/settingFragment"
         android:name="com.example.covid19news.presentation.ui.fragments.SettingFragment"
-        android:label="fragment_setting"
+        android:label="Setting"
         tools:layout="@layout/fragment_setting" />
+
+    <fragment
+        android:id="@+id/statisticFragment"
+        android:name="com.example.covid19news.presentation.ui.fragments.StatisticFragment"
+        android:label="World statistic"
+        tools:layout="@layout/fragment_statistic" />
 </navigation>

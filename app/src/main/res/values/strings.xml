@@ -5,6 +5,9 @@
     <string name="save_news">save news</string>
     <string name="save_settings">save settings</string>
     <string name="localization">Localization:</string>
+    <string name="breaking_news_navigation_menu">Breaking News</string>
+    <string name="saved_news__navigation_menu">Saved News</string>
+    <string name="statistic__navigation_menu">Statistic</string>
 
     <string-array name="country">
         <item>ALL WORLD</item>

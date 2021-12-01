@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:layout_margin="8dp"
+    tools:context=".presentation.ui.fragments.StatisticFragment">
+
+    <TextView
+        android:id="@+id/total_confirmed_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="14sp"
+        android:layout_marginTop="8dp"
+        tools:text="Total confirmed :" />
+
+    <TextView
+        android:id="@+id/total_deaths_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="14sp"
+        android:layout_marginTop="8dp"
+        tools:text="Total deaths :" />
+
+    <TextView
+        android:id="@+id/total_recovered_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="14sp"
+        android:layout_marginTop="8dp"
+        tools:text="Total recovered :" />
+
+    <TextView
+        android:id="@+id/total_new_cases_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="14sp"
+        android:layout_marginTop="8dp"
+        tools:text="Total new cases :" />
+
+    <TextView
+        android:id="@+id/total_new_deaths_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="14sp"
+        android:layout_marginTop="8dp"
+        tools:text="Total new deaths :" />
+
+    <TextView
+        android:id="@+id/total_active_cases_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="14sp"
+        android:layout_marginTop="8dp"
+        tools:text="Total active cases :" />
+
+    <TextView
+        android:id="@+id/total_cases_per_millionPop_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="14sp"
+        android:layout_marginTop="8dp"
+        tools:text="Total cases per million pop :" />
+
+    <TextView
+        android:id="@+id/updated_time_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="14sp"
+        android:layout_marginTop="8dp"
+        tools:text="Updated :" />
+
+    <ProgressBar
+        android:id="@+id/progress_statistic"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"/>
+
+</androidx.appcompat.widget.LinearLayoutCompat>
