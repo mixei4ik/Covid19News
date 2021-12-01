@@ -27,13 +27,13 @@ object DataModule {
 
     @Singleton
     @Provides
-    fun provideNewsRepository( api: NewsService, newsProvider: NewsProvider): NewsRepository {
+    fun provideNewsRepository(api: NewsService, newsProvider: NewsProvider): NewsRepository {
         return NewsRepositoryImpl(api, newsProvider)
     }
 
     @Singleton
     @Provides
-    fun provideSettingsRepository( userStorage: UserStorage): SettingsRepository {
+    fun provideSettingsRepository(userStorage: UserStorage): SettingsRepository {
         return SettingsRepositoryImpl(userStorage)
     }
 
@@ -55,7 +55,7 @@ object DataModule {
 
     @Singleton
     @Provides
-    fun provideEntityNewsDao(newsEntity: NewsEntityDatabase) : EntityNewsDao {
+    fun provideEntityNewsDao(newsEntity: NewsEntityDatabase): EntityNewsDao {
         return newsEntity.getNewsEntityDao()
     }
 

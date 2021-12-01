@@ -1,19 +1,12 @@
 package com.example.covid19news.data.repository
 
-
-import com.example.covid19news.data.db.NewsEntity
-import com.example.covid19news.data.db.NewsEntityDatabase
 import com.example.covid19news.data.model.News
 import com.example.covid19news.data.model.NewsProvider
-import com.example.covid19news.data.network.NewsService
-import com.example.covid19news.data.model.Settings
 import com.example.covid19news.data.model.StatisticApiData
-import com.example.covid19news.data.srorage.UserStorage
+import com.example.covid19news.data.network.NewsService
 import com.example.covid19news.domain.NewsModel
 import com.example.covid19news.domain.models.Statistic
-import com.example.covid19news.domain.models.UserSettings
 import com.example.covid19news.domain.repository.NewsRepository
-import kotlinx.coroutines.flow.map
 
 class NewsRepositoryImpl(
     private val api: NewsService,
@@ -58,4 +51,3 @@ class NewsRepositoryImpl(
         )
     }
 }
-

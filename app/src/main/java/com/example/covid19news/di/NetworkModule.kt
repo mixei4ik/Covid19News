@@ -16,13 +16,13 @@ object NetworkModule {
 
     @Singleton
     @Provides
-    fun provideRetrofit(): Retrofit{
+    fun provideRetrofit(): Retrofit {
         return RetrofitHelper.getRetrofit()
     }
 
     @Singleton
     @Provides
-    fun provideNewsApiClient(retrofit: Retrofit): NewsApiClient{
+    fun provideNewsApiClient(retrofit: Retrofit): NewsApiClient {
         return retrofit.create(NewsApiClient::class.java)
     }
 

@@ -7,7 +7,7 @@ import com.example.covid19news.domain.repository.SettingsRepository
 
 class SettingsRepositoryImpl(private val userStorage: UserStorage) : SettingsRepository {
 
-    override fun saveSettings(userSettings: UserSettings) : Boolean {
+    override fun saveSettings(userSettings: UserSettings): Boolean {
         val setting = Settings(userSettings.darkThemeIncluded, userSettings.localization)
         return userStorage.saveSettings(setting)
     }

@@ -3,14 +3,14 @@ package com.example.covid19news.presentation.viewmodel
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.covid19news.common.Resource
-import com.example.covid19news.domain.GetNewsUseCase
-import com.example.covid19news.domain.GetSettingsUseCase
 import com.example.covid19news.domain.GetStatisticUseCase
-import com.example.covid19news.domain.SaveSettingUseCase
-import com.example.covid19news.presentation.NewsListState
 import com.example.covid19news.presentation.StatisticState
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.flow.*
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.launchIn
+import kotlinx.coroutines.flow.onEach
 import javax.inject.Inject
 
 @HiltViewModel

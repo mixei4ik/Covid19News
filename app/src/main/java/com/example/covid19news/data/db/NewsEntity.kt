@@ -3,7 +3,6 @@ package com.example.covid19news.data.db
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
-
 @Entity(tableName = "entity_news")
 data class NewsEntity(
     @PrimaryKey val nid: Int,

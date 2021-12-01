@@ -5,12 +5,17 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.covid19news.common.Constants
 import com.example.covid19news.common.Resource
-import com.example.covid19news.domain.*
+import com.example.covid19news.domain.GetNewsUseCase
+import com.example.covid19news.domain.GetSettingsUseCase
+import com.example.covid19news.domain.SaveSettingUseCase
 import com.example.covid19news.domain.models.UserSettings
 import com.example.covid19news.presentation.NewsListState
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.flow.*
-import kotlinx.coroutines.launch
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.launchIn
+import kotlinx.coroutines.flow.onEach
 import javax.inject.Inject
 
 @HiltViewModel
@@ -39,7 +44,7 @@ class NewsViewModel @Inject constructor(
 
     fun getBreakingNews(countryInit: String) {
         getNewsUseCase(countryInit).onEach { result ->
-            when(result) {
+            when (result) {
                 is Resource.Success -> {
                     _itemsState.value = NewsListState(news = result.data ?: emptyList())
                 }

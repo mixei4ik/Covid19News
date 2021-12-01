@@ -11,7 +11,7 @@ class DbRepositoryImpl(private val db: NewsEntityDatabase) : DbRepository {
     override suspend fun upsert(news: NewsModel) = db.getNewsEntityDao().upsert(mapFromDomainToStorage(news))
 
     override fun getSavedNews() = db.getNewsEntityDao().getAllEntityNews()
-        .map { news -> news.map { mapFromStorageToDomain(it) }}
+        .map { news -> news.map { mapFromStorageToDomain(it) } }
 
     override suspend fun deleteEntityNews(news: NewsModel) =
         db.getNewsEntityDao().deleteEntityNews(mapFromDomainToStorage(news))

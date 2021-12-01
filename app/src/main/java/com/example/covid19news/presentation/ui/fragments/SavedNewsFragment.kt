@@ -59,7 +59,6 @@ class SavedNewsFragment : Fragment(R.layout.fragment_saved_news) {
                 savedNewsViewModel.deleteSavedNews(news)
                 Toast.makeText(context, "Deleted news", Toast.LENGTH_SHORT).show()
             }
-
         }
 
         ItemTouchHelper(itemTouchHelper).apply {

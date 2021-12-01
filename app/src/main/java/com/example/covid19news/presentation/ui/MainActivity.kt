@@ -42,7 +42,6 @@ class MainActivity : AppCompatActivity() {
         navController = navHostFragment.navController
         binding.bottomNavigationView.setupWithNavController(navController)
 
-
         NavigationUI.setupActionBarWithNavController(this, navController)
 
         lifecycleScope.launchWhenStarted {

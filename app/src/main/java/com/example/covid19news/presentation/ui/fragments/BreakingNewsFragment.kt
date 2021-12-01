@@ -1,7 +1,6 @@
 package com.example.covid19news.presentation.ui.fragments
 
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
@@ -9,7 +8,6 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.covid19news.R
-import com.example.covid19news.common.Resource
 import com.example.covid19news.databinding.FragmentBreakingNewsBinding
 import com.example.covid19news.presentation.adapter.NewsAdapter
 import com.example.covid19news.presentation.ui.MainActivity

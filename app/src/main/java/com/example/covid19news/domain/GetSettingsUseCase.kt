@@ -1,7 +1,6 @@
 package com.example.covid19news.domain
 
 import com.example.covid19news.domain.models.UserSettings
-import com.example.covid19news.domain.repository.NewsRepository
 import com.example.covid19news.domain.repository.SettingsRepository
 import javax.inject.Inject
 

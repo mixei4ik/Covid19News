@@ -12,7 +12,7 @@ import coil.load
 import com.example.covid19news.R
 import com.example.covid19news.domain.NewsModel
 
-class NewsAdapter: RecyclerView.Adapter<NewsViewHolder>() {
+class NewsAdapter : RecyclerView.Adapter<NewsViewHolder>() {
 
     private val diffCallback = object : DiffUtil.ItemCallback<NewsModel>() {
         override fun areItemsTheSame(oldItem: NewsModel, newItem: NewsModel): Boolean {
@@ -60,7 +60,7 @@ class NewsViewHolder(view: View) : RecyclerView.ViewHolder(view) {
     fun bind(title: String, urlToImage: String, time: String) {
         textView.text = title
         timeView.text = time
-        imageView.load(urlToImage){
+        imageView.load(urlToImage) {
             placeholder(R.drawable.ic_image)
             error(R.drawable.ic_image)
             crossfade(true)
