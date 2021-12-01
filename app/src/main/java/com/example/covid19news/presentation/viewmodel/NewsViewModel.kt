@@ -1,7 +1,9 @@
 package com.example.covid19news.presentation.viewmodel
 
+import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.covid19news.common.Constants
 import com.example.covid19news.common.Resource
 import com.example.covid19news.domain.*
 import com.example.covid19news.domain.models.UserSettings
@@ -15,7 +17,8 @@ import javax.inject.Inject
 class NewsViewModel @Inject constructor(
     private val getNewsUseCase: GetNewsUseCase,
     private val getSettingsUseCase: GetSettingsUseCase,
-    private val saveSettingUseCase: SaveSettingUseCase
+    private val saveSettingUseCase: SaveSettingUseCase,
+    savedStateHandle: SavedStateHandle
 ) : ViewModel() {
 
     private val _itemsState = MutableStateFlow<NewsListState>(NewsListState())
@@ -27,15 +30,15 @@ class NewsViewModel @Inject constructor(
     private val _country = MutableStateFlow<String>("")
     val country: StateFlow<String> = _country.asStateFlow()
 
-    private var countryInit = ""
-
     init {
         loadSettings()
-        getBreakingNews(country = countryInit)
+        savedStateHandle.get<String>(Constants.PARAM_COUNTRY)?. let { countryInit ->
+            getBreakingNews(countryInit)
+        }
     }
 
-    fun getBreakingNews(country: String) {
-        getNewsUseCase(country).onEach { result ->
+    fun getBreakingNews(countryInit: String) {
+        getNewsUseCase(countryInit).onEach { result ->
             when(result) {
                 is Resource.Success -> {
                     _itemsState.value = NewsListState(news = result.data ?: emptyList())
@@ -58,7 +61,6 @@ class NewsViewModel @Inject constructor(
     fun loadSettings() {
         val settings = getSettingsUseCase.execute()
         _country.value = settings.localization
-        countryInit = settings.localization
         _darkThemeIncluded.value = settings.darkThemeIncluded
     }
 }
