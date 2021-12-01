@@ -37,8 +37,6 @@ class SettingFragment: Fragment(R.layout.fragment_setting) {
             }
         }
 
-//        binding.spinnerCountry.isSelected(R.array.country.  indexOf(userSettings.localization))
-
         binding.saveSettingsButton.setOnClickListener {
             val selectedDarkTheme = binding.switchCompat.isChecked
             val selectedLocalization = binding.spinnerCountry.selectedItem.toString()

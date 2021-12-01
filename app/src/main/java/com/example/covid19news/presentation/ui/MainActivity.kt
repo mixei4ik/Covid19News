@@ -15,7 +15,6 @@ import androidx.navigation.ui.NavigationUI
 import androidx.navigation.ui.setupWithNavController
 import com.example.covid19news.R
 import com.example.covid19news.databinding.ActivityMainBinding
-import com.example.covid19news.presentation.viewmodel.NewsDetailViewModel
 import com.example.covid19news.presentation.viewmodel.NewsViewModel
 import com.example.covid19news.presentation.viewmodel.SavedNewsViewModel
 import com.example.covid19news.presentation.viewmodel.StatisticViewModel
@@ -30,7 +29,6 @@ class MainActivity : AppCompatActivity() {
     private lateinit var navController: NavController
 
     val newsViewModel by viewModels<NewsViewModel>()
-    val newsDetailViewModel by viewModels<NewsDetailViewModel>()
     val savedNewsViewModel by viewModels<SavedNewsViewModel>()
     val statisticViewModel by viewModels<StatisticViewModel>()
 
