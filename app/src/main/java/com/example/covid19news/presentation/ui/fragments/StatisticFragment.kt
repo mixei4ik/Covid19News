@@ -40,12 +40,12 @@ class StatisticFragment : Fragment(R.layout.fragment_statistic) {
     private fun bindStatistic(statistic: Statistic?) {
         if (statistic == null) return
         binding.totalConfirmedView.text = "Total confirmed : ${statistic.totalConfirmed}"
-        binding.totalDeathsView.text = "Total confirmed : ${statistic.totalDeaths}"
-        binding.totalRecoveredView.text = "Total confirmed : ${statistic.totalRecovered}"
-        binding.totalNewCasesView.text = "Total confirmed : ${statistic.totalNewCases}"
-        binding.totalActiveCasesView.text = "Total confirmed : ${statistic.totalActiveCases}"
+        binding.totalDeathsView.text = "Total deaths : ${statistic.totalDeaths}"
+        binding.totalRecoveredView.text = "Total recovered : ${statistic.totalRecovered}"
+        binding.totalNewCasesView.text = "Total new cases : ${statistic.totalNewCases}"
+        binding.totalActiveCasesView.text = "Total active cases : ${statistic.totalActiveCases}"
         binding.totalCasesPerMillionPopView.text =
-            "Total confirmed : ${statistic.totalCasesPerMillionPop}"
-        binding.updatedTimeView.text = "Total confirmed : ${statistic.created}"
+            "Total cases per million pop : ${statistic.totalCasesPerMillionPop}"
+        binding.updatedTimeView.text = "Updated time : ${statistic.created}"
     }
 }

@@ -67,7 +67,7 @@ class SavedNewsFragment : Fragment(R.layout.fragment_saved_news) {
         }
 
         lifecycleScope.launchWhenStarted {
-            savedNewsViewModel.getSavedNews().collectLatest {
+            savedNewsViewModel.savedNews.collectLatest {
                 itemAdapter.diff.submitList(it)
             }
         }
