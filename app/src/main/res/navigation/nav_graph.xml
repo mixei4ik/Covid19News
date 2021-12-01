@@ -47,7 +47,7 @@
     <fragment
         android:id="@+id/settingFragment"
         android:name="com.example.covid19news.presentation.ui.fragments.SettingFragment"
-        android:label="Setting"
+        android:label="Settings"
         tools:layout="@layout/fragment_setting" />
 
     <fragment

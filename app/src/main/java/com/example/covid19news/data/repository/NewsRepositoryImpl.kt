@@ -7,6 +7,7 @@ import com.example.covid19news.data.model.News
 import com.example.covid19news.data.model.NewsProvider
 import com.example.covid19news.data.network.NewsService
 import com.example.covid19news.data.model.Settings
+import com.example.covid19news.data.model.StatisticApiData
 import com.example.covid19news.data.srorage.UserStorage
 import com.example.covid19news.domain.NewsModel
 import com.example.covid19news.domain.models.Statistic
@@ -15,10 +16,8 @@ import com.example.covid19news.domain.repository.NewsRepository
 import kotlinx.coroutines.flow.map
 
 class NewsRepositoryImpl(
-    private val db: NewsEntityDatabase,
     private val api: NewsService,
-    private val newsProvider: NewsProvider,
-    private val userStorage: UserStorage
+    private val newsProvider: NewsProvider
 ) : NewsRepository {
 
     override suspend fun getAllNews(country: String): List<NewsModel> {
@@ -30,61 +29,7 @@ class NewsRepositoryImpl(
     }
 
     override suspend fun getStatistic(): Statistic {
-        val statisticApi = api.getStatistic()
-        return Statistic(
-            statisticApi.totalConfirmed ?: 0,
-            statisticApi.totalDeaths ?: 0,
-            statisticApi.totalRecovered ?: 0,
-            statisticApi.totalNewCases ?: 0,
-            statisticApi.totalNewDeaths ?: 0,
-            statisticApi.totalActiveCases ?: 0,
-            statisticApi.totalCasesPerMillionPop ?: 0,
-            statisticApi.created ?: "no data",
-        )
-    }
-
-    override suspend fun upsert(news: NewsModel) = db.getNewsEntityDao().upsert(mapFromDomainToStorage(news))
-
-    override fun getSavedNews() = db.getNewsEntityDao().getAllEntityNews()
-        .map { news -> news.map { mapFromStorageToDomain(it) }}
-
-    override suspend fun deleteEntityNews(news: NewsModel) =
-        db.getNewsEntityDao().deleteEntityNews(mapFromDomainToStorage(news))
-
-    override fun saveSettings(userSettings: UserSettings) : Boolean {
-        val setting = Settings(userSettings.darkThemeIncluded, userSettings.localization)
-        return userStorage.saveSettings(setting)
-    }
-
-    override fun getSettings(): UserSettings {
-        val settings = userStorage.getSettings()
-        return UserSettings(settings.darkThemeIncluded, settings.localization)
-    }
-
-    private fun mapFromDomainToStorage(saveNews: NewsModel): NewsEntity {
-        return NewsEntity(
-            saveNews.nid,
-            saveNews.title,
-            saveNews.description,
-            saveNews.content,
-            saveNews.url,
-            saveNews.urlToImage,
-            saveNews.publishedAt,
-            saveNews.siteName
-        )
-    }
-
-    private fun mapFromStorageToDomain(newsEntity: NewsEntity): NewsModel {
-        return NewsModel(
-            newsEntity.nid,
-            newsEntity.title,
-            newsEntity.description,
-            newsEntity.content,
-            newsEntity.url,
-            newsEntity.urlToImage,
-            newsEntity.publishedAt,
-            newsEntity.siteName
-        )
+        return mapStatisticToDomain(api.getStatistic())
     }
 
     private fun mapFromApiDataToDomain(newsApiData: News): NewsModel {
@@ -97,6 +42,19 @@ class NewsRepositoryImpl(
             newsApiData.urlToImage ?: "no data",
             newsApiData.publishedAt ?: "no data",
             newsApiData.siteName ?: "no data"
+        )
+    }
+
+    private fun mapStatisticToDomain(statisticApi: StatisticApiData): Statistic {
+        return Statistic(
+            statisticApi.totalConfirmed ?: 0,
+            statisticApi.totalDeaths ?: 0,
+            statisticApi.totalRecovered ?: 0,
+            statisticApi.totalNewCases ?: 0,
+            statisticApi.totalNewDeaths ?: 0,
+            statisticApi.totalActiveCases ?: 0,
+            statisticApi.totalCasesPerMillionPop ?: 0,
+            statisticApi.created ?: "no data"
         )
     }
 }

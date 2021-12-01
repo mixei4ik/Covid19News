@@ -6,10 +6,14 @@ import com.example.covid19news.data.db.EntityNewsDao
 import com.example.covid19news.data.db.NewsEntityDatabase
 import com.example.covid19news.data.model.NewsProvider
 import com.example.covid19news.data.network.NewsService
+import com.example.covid19news.data.repository.DbRepositoryImpl
 import com.example.covid19news.data.repository.NewsRepositoryImpl
+import com.example.covid19news.data.repository.SettingsRepositoryImpl
 import com.example.covid19news.data.srorage.SharedPerfUserStorage
 import com.example.covid19news.data.srorage.UserStorage
+import com.example.covid19news.domain.repository.DbRepository
 import com.example.covid19news.domain.repository.NewsRepository
+import com.example.covid19news.domain.repository.SettingsRepository
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -23,8 +27,20 @@ object DataModule {
 
     @Singleton
     @Provides
-    fun provideNewsRepository(db: NewsEntityDatabase, api: NewsService, newsProvider: NewsProvider, userStorage: UserStorage): NewsRepository {
-        return NewsRepositoryImpl(db, api, newsProvider, userStorage)
+    fun provideNewsRepository( api: NewsService, newsProvider: NewsProvider): NewsRepository {
+        return NewsRepositoryImpl(api, newsProvider)
+    }
+
+    @Singleton
+    @Provides
+    fun provideSettingsRepository( userStorage: UserStorage): SettingsRepository {
+        return SettingsRepositoryImpl(userStorage)
+    }
+
+    @Singleton
+    @Provides
+    fun provideDbRepository(db: NewsEntityDatabase): DbRepository {
+        return DbRepositoryImpl(db)
     }
 
     @Singleton

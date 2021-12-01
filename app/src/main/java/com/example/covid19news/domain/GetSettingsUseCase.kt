@@ -2,13 +2,14 @@ package com.example.covid19news.domain
 
 import com.example.covid19news.domain.models.UserSettings
 import com.example.covid19news.domain.repository.NewsRepository
+import com.example.covid19news.domain.repository.SettingsRepository
 import javax.inject.Inject
 
 class GetSettingsUseCase @Inject constructor(
-    private val repository: NewsRepository
+    private val settingsRepository: SettingsRepository
 ) {
 
     fun execute(): UserSettings {
-        return repository.getSettings()
+        return settingsRepository.getSettings()
     }
 }
