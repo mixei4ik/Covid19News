@@ -45,7 +45,7 @@ class MainActivity : AppCompatActivity() {
         NavigationUI.setupActionBarWithNavController(this, navController)
 
         lifecycleScope.launchWhenStarted {
-            newsViewModel.darkThemeIncluded.collectLatest {
+            newsViewModel.darkThemeOn.collectLatest {
                 if (it) {
                     AppCompatDelegate.setDefaultNightMode(MODE_NIGHT_YES)
                 } else {

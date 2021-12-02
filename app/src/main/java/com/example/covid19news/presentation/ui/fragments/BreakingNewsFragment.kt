@@ -14,8 +14,6 @@ import com.example.covid19news.presentation.ui.MainActivity
 import com.example.covid19news.presentation.viewmodel.NewsViewModel
 import kotlinx.coroutines.flow.collectLatest
 
-private const val TAG = "BreakingNewsFragment"
-
 class BreakingNewsFragment : Fragment(R.layout.fragment_breaking_news) {
 
     private lateinit var binding: FragmentBreakingNewsBinding
@@ -40,12 +38,6 @@ class BreakingNewsFragment : Fragment(R.layout.fragment_breaking_news) {
                 R.id.action_breakingNewsFragment_to_newsItemFragment,
                 bundle
             )
-        }
-
-        lifecycleScope.launchWhenStarted {
-            newsViewModel.country.collectLatest {
-                newsViewModel.getBreakingNews(it)
-            }
         }
 
         lifecycleScope.launchWhenStarted {

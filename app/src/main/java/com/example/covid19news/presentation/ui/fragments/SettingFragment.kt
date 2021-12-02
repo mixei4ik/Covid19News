@@ -24,7 +24,7 @@ class SettingFragment : Fragment(R.layout.fragment_setting) {
         newsViewModel = (activity as MainActivity).newsViewModel
 
         lifecycleScope.launchWhenStarted {
-            newsViewModel.darkThemeIncluded.collectLatest {
+            newsViewModel.darkThemeOn.collectLatest {
                 binding.switchCompat.isChecked = it
             }
         }

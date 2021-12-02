@@ -29,11 +29,8 @@ class NewsViewModel @Inject constructor(
     private val _itemsState = MutableStateFlow<NewsListState>(NewsListState())
     val itemsState: StateFlow<NewsListState> = _itemsState.asStateFlow()
 
-    private val _darkThemeIncluded = MutableStateFlow<Boolean>(false)
-    val darkThemeIncluded: StateFlow<Boolean> = _darkThemeIncluded.asStateFlow()
-
-    private val _country = MutableStateFlow<String>("")
-    val country: StateFlow<String> = _country.asStateFlow()
+    private val _darkThemeOn = MutableStateFlow<Boolean>(false)
+    val darkThemeOn: StateFlow<Boolean> = _darkThemeOn.asStateFlow()
 
     init {
         loadSettings()
@@ -42,7 +39,7 @@ class NewsViewModel @Inject constructor(
         }
     }
 
-    fun getBreakingNews(countryInit: String) {
+    private fun getBreakingNews(countryInit: String) {
         getNewsUseCase(countryInit).onEach { result ->
             when (result) {
                 is Resource.Success -> {
@@ -65,7 +62,7 @@ class NewsViewModel @Inject constructor(
 
     fun loadSettings() {
         val settings = getSettingsUseCase.execute()
-        _country.value = settings.localization
-        _darkThemeIncluded.value = settings.darkThemeIncluded
+        _darkThemeOn.value = settings.darkThemeIncluded
+        getBreakingNews(settings.localization)
     }
 }
