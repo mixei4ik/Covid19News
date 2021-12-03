@@ -25,7 +25,7 @@ class StatisticViewModel @Inject constructor(
         getStatistic()
     }
 
-    private fun getStatistic() {
+    fun getStatistic() {
         getStatisticUseCase().onEach { result ->
             when (result) {
                 is Resource.Success -> {

@@ -1,0 +1,12 @@
+JvmtiExport can_access_local_variables 0
+JvmtiExport can_hotswap_or_post_breakpoint 0
+JvmtiExport can_post_on_exceptions 0
+# 181 ciObject found
+ciMethod java/lang/Object <init> ()V 4097 1 5381 0 -1
+ciMethod java/lang/String charAt (I)C 3217 1 9082 0 -1
+ciMethod java/lang/String <init> ([BB)V 2049 1 798 0 -1
+ciMethod java/lang/String isLatin1 ()Z 4097 1 14110 0 -1
+ciMethod java/lang/String checkIndex (II)V 9 1 1 0 -1
+ciMethod java/lang/RuntimeException <init> (Ljava/lang/String;)V 0 0 1 0 -1
+ciMethod java/lang/AbstractStringBuilder <init> (I)V 849 1 338 0 -1
+ciMethod 

@@ -5,7 +5,7 @@ import com.example.covid19news.data.model.StatisticApiData
 import retrofit2.http.GET
 import retrofit2.http.Query
 
-private const val LIMIT = 20
+private const val LIMIT = 200
 
 interface NewsApiClient {
     @GET("/news/trending?&offset")
